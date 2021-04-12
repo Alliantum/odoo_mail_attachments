@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Dinamic Attachments to Mails",
+    'name': "Dynamic Attachments to Mails",
     'summary': """
-        Attach Report to Mail Composer dinamically.""",
+        Attach Report to Mail Composer dynamically.""",
     'description': """
     """,
     'author': "Alliantum",
