@@ -28,8 +28,11 @@ class MailAttachmentLine(models.Model):
         return report_record_ids
 
     def _get_id_from_related_path(self, record_id):
-        report_record_ids = self.recursive_get_report_record_id(record_id, *self.related_path.split('.', 1))
-        if report_record_ids and isinstance(report_record_ids[0], self.env[self.model_id.model]):
+        if self.related_path.count('.') > 0:
+            report_record_ids = self.recursive_get_report_record_id(record_id, *self.related_path.split('.', 1))
+        else:
+            report_record_ids = getattr(record_id, self.related_path, None)
+        if report_record_ids and isinstance(report_record_ids[0], self.env[self.report_id.model_id.model].__class__):
             return report_record_ids
 
     @api.model
@@ -47,7 +50,7 @@ class MailAttachmentLine(models.Model):
                     pdf = line.report_id.render_qweb_pdf(report_record_ids.ids)
                     if pdf:
                         base64_pdf = base64.b64encode(pdf[0])
-                        attachment_ids += composer_id.get_dynamic_attachments(record_id, base64_pdf, report_record_ids)
+                        attachment_ids += composer_id.get_dynamic_attachments(line.report_id, base64_pdf, report_record_ids)
         if attachment_ids:
             value['value']['attachment_ids'] += [(4, attachment_id.id, False) for attachment_id in attachment_ids]
         return value
