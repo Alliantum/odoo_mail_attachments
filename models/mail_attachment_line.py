@@ -24,8 +24,13 @@ class MailAttachmentLine(models.Model):
                     if not report_record_ids:
                         report_record_ids = getattr(record, attr)
                     else:
-                        report_record_ids +=  getattr(record, attr)
+                        report_record_ids += getattr(record, attr)
         return report_record_ids
+
+    def _get_id_from_related_path(self, record_id):
+        report_record_ids = self.recursive_get_report_record_id(record_id, *self.related_path.split('.', 1))
+        if report_record_ids and isinstance(report_record_ids[0], self.env[self.model_id.model]):
+            return report_record_ids
 
     @api.model
     def add_dynamic_reports(self, composer_id, value):
