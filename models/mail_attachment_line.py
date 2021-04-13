@@ -11,13 +11,14 @@ class MailAttachmentLine(models.Model):
     _description = 'Mail Attachemnt Line'
 
     company_id = fields.Many2one('res.company', required=True, ondelete="cascade")
-    model_id = fields.Many2one('ir.model', string='Apply on Model', required=True, ondelete="cascade")
+    model_id = fields.Many2one('ir.model', string='Apply on Model', required=True, ondelete="cascade", help="Model used by the email template. This will decide whether to use or not then current attachemnt line.")
     model_name = fields.Char(related="model_id.model")
-    filter_model_id = fields.Char(string="Model Filter")
-    report_id = fields.Many2one('ir.actions.report', string="Report", required=True, ondelete="cascade")
+    filter_model_id = fields.Char(string="Model Filter", help="Extended filtering option to trigger the line, for the Model.")
+    report_id = fields.Many2one('ir.actions.report', string="Report", required=True, ondelete="cascade", help="The report that will be used to generate the attachemnt.")
     report_model_name = fields.Char(related="report_id.model_id.model")
     filter_report_id = fields.Char(string="Report Model Filter")
-    related_path = fields.Char('Path to Report Model')
+    related_path = fields.Char('Path to Report Model',
+                               help="Using dot notation, you can specify here the path (starting from Model) to the records that will be used by the Report.\n For example:\n\n - Your rule applies to Sale Order, then if you want to attach the Delivery Slip to a Sale Order, you simply have to enter:\n    'picking_ids'\n\n - But, if your rule applies to Invoices too, you will need maybe something like:\n    'invoice_line_ids.sale_line_ids.order_id.picking_ids'")
 
     def _get_eval_context(self):
         """ Prepare the context used when evaluating python code
