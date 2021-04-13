@@ -11,14 +11,22 @@ class MailAttachmentLine(models.Model):
     _description = 'Mail Attachemnt Line'
 
     company_id = fields.Many2one('res.company', required=True, ondelete="cascade")
-    model_id = fields.Many2one('ir.model', string='Apply on Model', required=True, ondelete="cascade", help="Model used by the email template. This will decide whether to use or not then current attachemnt line.")
+    model_id = fields.Many2one('ir.model', string='Trigger Model', required=True, ondelete="cascade", help="Model used by the email template. This will decide whether to use or not then current attachemnt line.")
     model_name = fields.Char(related="model_id.model")
-    filter_model_id = fields.Char(string="Model Filter", help="Extended filtering option to trigger the line, for the Model.")
-    report_id = fields.Many2one('ir.actions.report', string="Report", required=True, ondelete="cascade", help="The report that will be used to generate the attachemnt.")
+    filter_model_id = fields.Char(string="Trigger Model Filtering", help="Extended filtering option to trigger the line, for the Model.")
+    existing_attachment_ids = fields.Many2many(comodel_name='ir.attachment', relation="attach_line_ir_attachment_relation", column1="line_id", column2="attachment_id", string="Existing Attachments")
+    attachment_ids = fields.Many2many('ir.attachment', string="Attachments")
+    static_attachments_count = fields.Integer(compute="_compute_static_attachments_count", string="Static Attachments")
+    report_id = fields.Many2one('ir.actions.report', string="Report", ondelete="cascade", help="The report that will be used to generate the attachemnt.")
     report_model_name = fields.Char(related="report_id.model_id.model")
-    filter_report_id = fields.Char(string="Report Model Filter")
+    filter_report_id = fields.Char(string="Report Model Filtering")
     related_path = fields.Char('Path to Report Model',
                                help="Using dot notation, you can specify here the path (starting from Model) to the records that will be used by the Report.\n For example:\n\n - Your rule applies to Sale Order, then if you want to attach the Delivery Slip to a Sale Order, you simply have to enter:\n    'picking_ids'\n\n - But, if your rule applies to Invoices too, you will need maybe something like:\n    'invoice_line_ids.sale_line_ids.order_id.picking_ids'")
+
+    @api.depends('existing_attachment_ids', 'attachment_ids')
+    def _compute_static_attachments_count(self):
+        for line in self:
+            line.static_attachments_count = len(line.existing_attachment_ids + line.attachment_ids)
 
     def _get_eval_context(self):
         """ Prepare the context used when evaluating python code
@@ -81,16 +89,18 @@ class MailAttachmentLine(models.Model):
         for line in self.env.user.company_id.mail_attachment_line_ids.filtered(lambda line: line.model_id.model == composer_id.model):
             record_id = line._pass_filter('filter_model_id', self.env[composer_id.model].browse(composer_id.res_id))
             if record_id:
-                pdf, report_record_ids = None, None
-                if line.related_path:
-                    report_record_ids = line._pass_filter('filter_report_id', line._get_id_from_related_path(record_id))
-                else:
-                    report_record_ids = line._pass_filter('filter_report_id', record_id)
-                if report_record_ids:
-                    pdf = line.report_id.render_qweb_pdf(report_record_ids.ids)
-                    if pdf:
-                        base64_pdf = base64.b64encode(pdf[0])
-                        attachment_ids += composer_id.get_dynamic_attachments(line.report_id, base64_pdf, report_record_ids)
+                attachment_ids += (line.existing_attachment_ids + line.attachment_ids)
+                if line.report_id and line.related_path:
+                    pdf, report_record_ids = None, None
+                    if line.related_path:
+                        report_record_ids = line._pass_filter('filter_report_id', line._get_id_from_related_path(record_id))
+                    else:
+                        report_record_ids = line._pass_filter('filter_report_id', record_id)
+                    if report_record_ids:
+                        pdf = line.report_id.render_qweb_pdf(report_record_ids.ids)
+                        if pdf:
+                            base64_pdf = base64.b64encode(pdf[0])
+                            attachment_ids += composer_id.get_dynamic_attachments(line.report_id, base64_pdf, report_record_ids)
         if attachment_ids:
             value['value']['attachment_ids'] += [(4, attachment_id.id, False) for attachment_id in attachment_ids]
         return value

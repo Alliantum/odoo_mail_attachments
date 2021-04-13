@@ -19,7 +19,6 @@
                         </group>
                     </group>
                     <separator string="Optional Filters" />
-
                     <group>
                         <group>
                             <h5>Model Filter</h5><br/>
@@ -31,6 +30,14 @@
                             <p class="p-3" colspan="4">And this is for the report model. You can also <b>keep empty for apply in all ciscunstances</b>.</p>
                             <field name="filter_report_id"  widget="domain" options="{'model': 'report_model_name'}" nolabel="1" colspan="4" />
                         </group>
+                    </group>
+                    <separator string="Static Attachments" />
+                    <group>
+                        <group>
+                            <field name="existing_attachment_ids" widget="many2many_tags"/>
+                            <field name="attachment_ids" widget="many2many_binary" />
+                        </group>
+                        <group />
                     </group>
                 </sheet>
             </form>
