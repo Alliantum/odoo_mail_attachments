@@ -18,7 +18,10 @@ class MailAttachmentLine(models.Model):
         for record in records:
             if hasattr(record, attr):
                 if remaining_path and record._fields[attr].type in ['one2many', 'many2many', 'many2one']:
-                    next_attr, next_remaining_path = remaining_path.split('.', 1)
+                    if remaining_path.count('.') > 0:
+                        next_attr, next_remaining_path = remaining_path.split('.', 1)
+                    else:
+                        next_attr, next_remaining_path = remaining_path, None
                     return self.recursive_get_report_record_id(getattr(record, attr), next_attr, next_remaining_path)
                 elif record._fields[attr].type in ['one2many', 'many2many', 'many2one']:
                     if not report_record_ids:
