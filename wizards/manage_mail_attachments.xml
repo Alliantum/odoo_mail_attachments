@@ -3,7 +3,7 @@
 
     <record id="manage_mail_attachemnt_view_form" model="ir.ui.view">
         <field name="name">manage.mail.attachments.view.form</field>
-        <field name="model">manage.mail.attachemnts</field>
+        <field name="model">manage.mail.attachments</field>
         <field name="arch" type="xml">
             <form string="Manage Dynamic Mail Attachments">
                 <p>
@@ -11,9 +11,13 @@
                 </p>
                 <field name="company_id" invisible="True" />
                 <field name="mail_attachment_line_ids" >
-                    <tree editable="top">
+                    <tree >
                         <field name="model_id" />
+                        <field name="model_name" />
+                        <field name="filter_model_id" readonly="True" />
                         <field name="report_id" />
+                        <field name="report_model_name" invisible="True"/>
+                        <field name="filter_report_id" readonly="True" />
                         <field name="related_path" />
                     </tree>
                 </field>

@@ -3,7 +3,7 @@
 
     <record id="action_manage_mail_attachent" model="ir.actions.act_window">
         <field name="name">Manage Attachments</field>
-        <field name="res_model">manage.mail.attachemnts</field>
+        <field name="res_model">manage.mail.attachments</field>
         <field name="type">ir.actions.act_window</field>
         <field name="view_type">form</field>
         <field name="view_mode">form</field>

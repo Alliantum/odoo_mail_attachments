@@ -13,6 +13,7 @@
     'data': [
         'security/ir.model.access.csv',
         'wizards/manage_mail_attachments.xml',
+        'views/mail_attachment_line.xml',
         'views/res_config_settings.xml'
     ]
 }
