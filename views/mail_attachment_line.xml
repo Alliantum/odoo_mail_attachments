@@ -18,10 +18,11 @@
                             <field name="related_path" />
                         </group>
                     </group>
+                    <hr />
                     <separator string="Optional Filters" />
                     <group>
                         <group>
-                            <h5>Model Filter</h5><br/>
+                            <h5>Trigger Model Filter</h5><br/>
                             <p class="p-3" colspan="4" >This filter will apply to the trigger model. <b>Keep empty to attach pdf in all cases</b>.</p>
                             <field name="filter_model_id" widget="domain" options="{'model': 'model_name'}" nolabel="1" colspan="4" />
                         </group>
@@ -31,14 +32,28 @@
                             <field name="filter_report_id"  widget="domain" options="{'model': 'report_model_name'}" nolabel="1" colspan="4" />
                         </group>
                     </group>
+                    <hr />
                     <separator string="Static Attachments" />
                     <group>
                         <group>
-                            <field name="existing_attachment_ids" widget="many2many_tags"/>
                             <field name="attachment_ids" widget="many2many_binary" />
+                            <field name="existing_attachment_ids" widget="many2many_tags" />
+                            <field name="use_existing_by_language" widget="boolean_toggle"/>
                         </group>
                         <group />
                     </group>
+                    <p attrs="{'invisible': [('use_existing_by_language', '=', False)]}" >
+                        When using this option, the language will be inferred from the <b>Trigger Model</b> when it contains the given <b>Reference Field</b> (most commonly will probably be <code>res_partner</code>) pointing to a <code>res.partner</code> related field.
+                    </p>
+                    <field name="existing_attachment_by_language_lines" attrs="{'invisible': [('use_existing_by_language', '=', False)]}" nolabel="1" >
+                        <tree editable="top">
+                            <field name="sequence" widget="handle" />
+                            <field name="attachment_line_id" invisible="True" />
+                            <field name="attachment_id" />
+                            <field name="ref_field" />
+                            <field name="lang_id" />
+                        </tree>
+                    </field>
                 </sheet>
             </form>
         </field>

@@ -14,6 +14,8 @@ class MailAttachmentLine(models.Model):
     model_id = fields.Many2one('ir.model', string='Trigger Model', required=True, ondelete="cascade", help="Model used by the email template. This will decide whether to use or not then current attachemnt line.")
     model_name = fields.Char(related="model_id.model")
     filter_model_id = fields.Char(string="Trigger Model Filtering", help="Extended filtering option to trigger the line, for the Model.")
+    use_existing_by_language = fields.Boolean('Existing Attachments by Language')
+    existing_attachment_by_language_lines = fields.One2many(comodel_name='attachment.language.line', inverse_name="attachment_line_id")
     existing_attachment_ids = fields.Many2many(comodel_name='ir.attachment', relation="attach_line_ir_attachment_relation", column1="line_id", column2="attachment_id", string="Existing Attachments")
     attachment_ids = fields.Many2many('ir.attachment', string="Attachments")
     static_attachments_count = fields.Integer(compute="_compute_static_attachments_count", string="Static Attachments")
@@ -26,7 +28,7 @@ class MailAttachmentLine(models.Model):
     @api.depends('existing_attachment_ids', 'attachment_ids')
     def _compute_static_attachments_count(self):
         for line in self:
-            line.static_attachments_count = len(line.existing_attachment_ids + line.attachment_ids)
+            line.static_attachments_count = len(line.existing_attachment_ids + line.attachment_ids + line.existing_attachment_by_language_lines.mapped('attachment_id'))
 
     def _get_eval_context(self):
         """ Prepare the context used when evaluating python code
@@ -82,6 +84,10 @@ class MailAttachmentLine(models.Model):
             record_id = line._pass_filter('filter_model_id', self.env[composer_id.model].browse(composer_id.res_id))
             if record_id:
                 attachment_ids += (line.existing_attachment_ids + line.attachment_ids)
+                if line.use_existing_by_language:
+                    for attachment_lang_line in line.existing_attachment_by_language_lines:
+                        if hasattr(record_id, attachment_lang_line.ref_field) and getattr(record_id, attachment_lang_line.ref_field).lang_id == attachment_lang_line.lang_id:
+                            attachment_ids += attachment_lang_line.attachment_id
                 if line.report_id and line.related_path:
                     pdf, report_record_ids = None, None
                     if line.related_path:
