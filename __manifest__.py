@@ -8,7 +8,7 @@
     'author': "Alliantum",
     'website': "https://www.alliantum.com",
     'category': 'Technical',
-    'version': '0.1',
+    'version': '1.0',
     'depends': ['base_setup'],
     'data': [
         'security/ir.model.access.csv',
