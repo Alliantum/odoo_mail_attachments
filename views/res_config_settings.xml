@@ -26,7 +26,7 @@
                                 <span class="fa fa-lg fa-building-o" title="Values set here are company-specific." aria-label="Values set here are company-specific." groups="base.group_multi_company" role="img"/>
                                 <div class="text-muted">
                                     Select the attachemnts to be include with the mail composer.<br />
-                                    <button name="%(action_manage_mail_attachent)d" class="btn btn-primary mt-3" type="action" string="Manage" />
+                                    <button name="%(action_manage_mail_attachent)d" class="btn btn-primary mt-3" type="action" string="Manage Attachment Rules" />
                                 </div>
                                 <div class="content-group">
                                     <div class="row mt16" />
