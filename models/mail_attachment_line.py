@@ -48,14 +48,6 @@ class MailAttachmentLine(models.Model):
         else:
             return records
 
-    def _report_record_pass_filter(self, records):
-        """ Filter the records that satisfy the precondition of action ``self``. """
-        if self.filter_pre_domain and records:
-            domain = [('id', 'in', records.ids)] + safe_eval(self.filter_pre_domain, self._get_eval_context())
-            return records.search(domain)
-        else:
-            return records
-
     @api.model
     def recursive_get_report_record_id(self, records, attr, remaining_path):
         # records can be one or many records of the same model, so, this is simiar to an api.multi for loop
