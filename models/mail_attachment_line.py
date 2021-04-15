@@ -16,7 +16,7 @@ class MailAttachmentLine(models.Model):
     filter_model_id = fields.Char(string="Trigger Model Filtering", help="Extended filtering option to trigger the line, for the Model.")
     use_existing_by_language = fields.Boolean('Existing Attachments by Language')
     existing_attachment_by_language_lines = fields.One2many(comodel_name='attachment.language.line', inverse_name="attachment_line_id")
-    existing_attachment_ids = fields.Many2many(comodel_name='ir.attachment', relation="attach_line_ir_attachment_relation", column1="line_id", column2="attachment_id", string="Existing Attachments")
+    existing_attachment_ids = fields.Many2many(comodel_name='ir.attachment', relation="attach_line_ir_attachment_relation", column1="line_id", column2="attachment_id", string="Existing Attachments", domain="[('mimetype', 'not in', ['application/javascript', 'text/css', 'text/calendar'])]")
     attachment_ids = fields.Many2many('ir.attachment', string="Attachments")
     static_attachments_count = fields.Integer(compute="_compute_static_attachments_count", string="Static Attachments")
     report_id = fields.Many2one('ir.actions.report', string="Report", ondelete="cascade", help="The report that will be used to generate the attachemnt.")
