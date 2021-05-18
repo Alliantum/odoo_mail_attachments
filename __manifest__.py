@@ -1,19 +1,23 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Dynamic Attachments to Mails",
+    'name': "Mails Dynamic Attachments",
     'summary': """
-        Attach Report to Mail Composer dynamically.""",
+        Attach Dynamically Generated Documents to your Mails""",
     'description': """
     """,
     'author': "Alliantum",
     'website': "https://www.alliantum.com",
+    'license': 'AGPL-3',
+    'version': '12.0.1.0.0',
     'category': 'Technical',
-    'version': '1.0',
     'depends': ['base_setup'],
     'data': [
         'security/ir.model.access.csv',
         'wizards/manage_mail_attachments.xml',
         'views/mail_attachment_line.xml',
         'views/res_config_settings.xml'
-    ]
+    ],
+    'auto_install': False,
+    'application': False,
+    'installable': True
 }
