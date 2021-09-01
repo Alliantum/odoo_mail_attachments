@@ -20,7 +20,7 @@ Mails Dynamic Attachments
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://shields.io/badge/Alliantum%2fodoo_mail_attachments-24c3f3?style=for-the-badge&logo=github&label=github
-    :target: https://github.com/Alliantum/odoo_mail_attachments/tree/master/odoo_mail_attachments
+    :target: https://github.com/Alliantum/odoo_mail_attachments/tree/master
     :alt: Alliantum/odoo_mail_attachments
 
 |badge1| |badge2| |badge3| 
@@ -68,8 +68,6 @@ Configuration
    :align: center
 
 
-
-
 2. Start adding attachments is very easy, just click ``Add a line``,
    then select the Model on which the current line will apply (for
    example, when sending an email from a Sale Order), and also decide
@@ -93,11 +91,12 @@ Configuration
    and hover the fields to get the technical name of the field.
 
 For example:
+
 -  Your rule applies to Sale Order, then if you want to attach the
-   Delivery Slip to a Sale Order, you simply have to enter:
-   ‘picking_ids’
+   Delivery Slip to a Sale Order, you simply have to enter
+   ‘picking_ids’.
 -  But, if your rule applies to Invoices for example, you will need
-   maybe something like:
+   maybe something like,
    ‘invoice_line_ids.sale_line_ids.order_id.picking_ids’. Notice here
    how the x2many fields are including here all the possible existing
    records.
@@ -108,9 +107,6 @@ For example:
    :width: 100 %
    :scale: 70 %
    :align: center
-
-
-
 
 
 4. Filtering is also available to decide in which circumstances our rule
@@ -148,7 +144,6 @@ For example:
    :width: 100 %
    :scale: 70 %
    :align: center
-
 
 
 Usage
