@@ -175,7 +175,7 @@ Authors
 Contributors
 ~~~~~~~~~~~~
 
--  {David Moreno} <{david.moreno@alliantum.com}>
+-  David Moreno david.moreno@alliantum.com
 
 Other credits
 ~~~~~~~~~~~~~

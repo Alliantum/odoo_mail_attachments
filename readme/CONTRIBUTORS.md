@@ -1,1 +1,1 @@
-- {David Moreno} <{david.moreno@alliantum.com}>
+- David Moreno <david.moreno@alliantum.com>
