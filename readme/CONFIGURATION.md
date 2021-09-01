@@ -1,4 +1,4 @@
-1. In order to add dynamically attachment to your emails. You must go to Settings / General Settings and scroll down to the bottom. A new seccion `Dynamic Mail Attachments` will have appeared there, then click on Manage button to launch the wizard and start creating rules.
+1. In order to add dynamically attachment to your emails. You must go to Settings / General Settings and scroll down to the bottom. A new section `Dynamic Mail Attachments` will have appeared there, then click on Manage button to launch the wizard and start creating rules.
 
 <div align="center" style="margin: 2rem;">
     <img src="../static/description/settings.png" width="90%" style="border-radius: 5px;">
@@ -16,7 +16,7 @@
 
 For example:
  - Your rule applies to Sale Order, then if you want to attach the Delivery Slip to a Sale Order, you simply have to enter: 'picking_ids'
- - But, if your rule applies to Invoices for example, you will need maybe something like: 'invoice_line_ids.sale_line_ids.order_id.picking_ids'. Notice here how the x2many fields are including here all the posible existing records.
+ - But, if your rule applies to Invoices for example, you will need maybe something like: 'invoice_line_ids.sale_line_ids.order_id.picking_ids'. Notice here how the x2many fields are including here all the possible existing records.
 
 <div align="center" style="margin: 2rem;">
     <img src="../static/description/path.png" width="90%" style="border-radius: 5px;">
@@ -25,7 +25,7 @@ For example:
 
 
 
-4. Filtering is also available to decide in which circunstances our rule line will take action. If you just need to attach certain file for a Sale Order, which Customer has some special value in a concrete field, let's say, `partner_id.is_premium`, then you can use the button **Add Filter** to enter a domain that matchs your needs. Something similar can be also done for the related object, in our examples the Delivery.
+4. Filtering is also available to decide in which circumstances our rule line will take action. If you just need to attach certain file for a Sale Order, which Customer has some special value in a concrete field, let's say, `partner_id.is_premium`, then you can use the button **Add Filter** to enter a domain that matches your needs. Something similar can be also done for the related object, in our examples the Delivery.
 
 <div align="center" style="margin: 2rem;">
     <img src="../static/description/filtering.png" width="90%" style="border-radius: 5px;">
@@ -33,7 +33,7 @@ For example:
 
 5. Continuing with more extra options, we can for instance attache static files in a couple of ways, one for adding to your email attachments that were already loaded in Odoo, or to upload on the fly a new one that really suits you.
 
-6. And finally, there's a powerful way of attaching files based on the language of one of the related records of the corrent object (images that includes text, Terms and Conditions, or any other kind of document). You can think of it like, again, in a SO, when we need to attach some file in the language of our customer. Let's say, that in out Sales Order, our Customer has set `Language` to French, in such a case, our configuration line will look like this:
+6. And finally, there's a powerful way of attaching files based on the language of one of the related records of the correct object (images that includes text, Terms and Conditions, or any other kind of document). You can think of it like, again, in a SO, when we need to attach some file in the language of our customer. Let's say, that in out Sales Order, our Customer has set `Language` to French, in such a case, our configuration line will look like this:
 
 <div align="center" style="margin: 2rem;">
     <img src="../static/description/attach_languages.png" width="90%" style="border-radius: 5px;">
