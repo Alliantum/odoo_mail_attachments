@@ -5,7 +5,6 @@ from odoo.tools.safe_eval import safe_eval
 class MailComposer(models.TransientModel):
     _inherit = 'mail.compose.message'
 
-    @api.multi
     def onchange_template_id(self, template_id, composition_mode, model, res_id):
         value = super(MailComposer, self).onchange_template_id(template_id, composition_mode, model, res_id)
         # This method will return the same 'value' variable, but updated with the pdf reports that were dynamically generated
