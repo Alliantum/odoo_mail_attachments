@@ -80,7 +80,7 @@ class MailAttachmentLine(models.Model):
     @api.model
     def add_dynamic_reports(self, composer_id, value):
         attachment_ids = self.env['ir.attachment']
-        for line in self.env.user.company_id.mail_attachment_line_ids.filtered(lambda line: line.model_id.model == composer_id.model):
+        for line in self.env.company.mail_attachment_line_ids.filtered(lambda line: line.model_id.model == composer_id.model):
             record_id = line._pass_filter('filter_model_id', self.env[composer_id.model].browse(composer_id.res_id))
             if record_id:
                 attachment_ids += (line.existing_attachment_ids + line.attachment_ids)
