@@ -95,7 +95,7 @@ class MailAttachmentLine(models.Model):
                     else:
                         report_record_ids = line._pass_filter('filter_report_id', record_id)
                     if report_record_ids:
-                        pdf = line.report_id.render_qweb_pdf(report_record_ids.ids)
+                        pdf = line.report_id._render_qweb_pdf(report_record_ids.ids)
                         if pdf:
                             base64_pdf = base64.b64encode(pdf[0])
                             attachment_ids += composer_id.get_dynamic_attachments(line.report_id, base64_pdf, report_record_ids)
