@@ -24,7 +24,6 @@ class MailComposer(models.TransientModel):
                 'name': filename,
                 'type': 'binary',
                 'datas': base64_pdf,
-                'datas_fname': filename,
                 'store_fname': report.report_file,
                 'res_model': self.model,
                 'res_id': self.res_id,
