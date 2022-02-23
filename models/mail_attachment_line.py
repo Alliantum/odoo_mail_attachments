@@ -8,10 +8,10 @@ from odoo.tools.safe_eval import safe_eval
 
 class MailAttachmentLine(models.Model):
     _name = 'mail.attachment.line'
-    _description = 'Mail Attachemnt Line'
+    _description = 'Mail Attachment Line'
 
     company_id = fields.Many2one('res.company', required=True, ondelete="cascade")
-    model_id = fields.Many2one('ir.model', string='Trigger Model', required=True, ondelete="cascade", help="Model used by the email template. This will decide whether to use or not then current attachemnt line.")
+    model_id = fields.Many2one('ir.model', string='Trigger Model', required=True, ondelete="cascade", help="Model used by the email template. This will decide whether to use or not then current attachment line.")
     model_name = fields.Char(related="model_id.model")
     filter_model_id = fields.Char(string="Trigger Model Filtering", help="Extended filtering option to trigger the line, for the Model.")
     use_existing_by_language = fields.Boolean('Existing Attachments by Language')
@@ -19,7 +19,7 @@ class MailAttachmentLine(models.Model):
     existing_attachment_ids = fields.Many2many(comodel_name='ir.attachment', relation="attach_line_ir_attachment_relation", column1="line_id", column2="attachment_id", string="Existing Attachments", domain="[('mimetype', 'not in', ['application/javascript', 'text/css', 'text/calendar'])]")
     attachment_ids = fields.Many2many('ir.attachment', string="Attachments")
     static_attachments_count = fields.Integer(compute="_compute_static_attachments_count", string="Static Attachments")
-    report_id = fields.Many2one('ir.actions.report', string="Report", ondelete="cascade", help="The report that will be used to generate the attachemnt.")
+    report_id = fields.Many2one('ir.actions.report', string="Report", ondelete="cascade", help="The report that will be used to generate the attachment.")
     report_model_name = fields.Char(related="report_id.model_id.model")
     filter_report_id = fields.Char(string="Report Model Filtering")
     related_path = fields.Char('Path to Report Model',
