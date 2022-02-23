@@ -52,7 +52,7 @@ class MailAttachmentLine(models.Model):
 
     @api.model
     def recursive_get_report_record_id(self, records, attr, remaining_path):
-        # records can be one or many records of the same model, so, this is simiar to an api.multi for loop
+        # records can be one or many records of the same model, so, this is similar to an api.multi for loop
         report_record_ids = None
         for record in records:
             if hasattr(record, attr):
