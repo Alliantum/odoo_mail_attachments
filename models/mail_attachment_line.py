@@ -80,14 +80,21 @@ class MailAttachmentLine(models.Model):
     @api.model
     def add_dynamic_reports(self, composer_id, value):
         attachment_ids = self.env['ir.attachment']
-        for line in self.env.company.mail_attachment_line_ids.filtered(lambda line: line.model_id.model == composer_id.model):
+        for line in self.env.user.company_id.mail_attachment_line_ids.filtered(lambda line: line.model_id.model == composer_id.model):
             record_id = line._pass_filter('filter_model_id', self.env[composer_id.model].browse(composer_id.res_id))
             if record_id:
                 attachment_ids += (line.existing_attachment_ids + line.attachment_ids)
                 if line.use_existing_by_language:
                     for attachment_lang_line in line.existing_attachment_by_language_lines:
-                        if hasattr(record_id, attachment_lang_line.ref_field) and getattr(record_id, attachment_lang_line.ref_field).lang_id == attachment_lang_line.lang_id:
-                            attachment_ids += attachment_lang_line.attachment_id
+                        if hasattr(record_id, attachment_lang_line.ref_field):
+                            record_lang_code = None
+                            if hasattr(getattr(record_id, attachment_lang_line.ref_field), 'lang'):
+                                record_lang_code = getattr(record_id, attachment_lang_line.ref_field).lang
+                            elif hasattr(getattr(record_id, attachment_lang_line.ref_field), 'lang_id'):
+                                record_lang_code = getattr(record_id, attachment_lang_line.ref_field).lang_id.code
+                            # if we were able to detect a language field in the ref_field and we have an attachment configured for it
+                            if record_lang_code and record_lang_code == attachment_lang_line.lang:
+                                attachment_ids += attachment_lang_line.attachment_id
                 if line.report_id and line.related_path:
                     pdf, report_record_ids = None, None
                     if line.related_path:
@@ -95,7 +102,7 @@ class MailAttachmentLine(models.Model):
                     else:
                         report_record_ids = line._pass_filter('filter_report_id', record_id)
                     if report_record_ids:
-                        pdf = line.report_id._render_qweb_pdf(report_record_ids.ids)
+                        pdf = line.report_id.render_qweb_pdf(report_record_ids.ids)
                         if pdf:
                             base64_pdf = base64.b64encode(pdf[0])
                             attachment_ids += composer_id.get_dynamic_attachments(line.report_id, base64_pdf, report_record_ids)
