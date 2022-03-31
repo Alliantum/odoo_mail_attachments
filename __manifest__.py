@@ -8,9 +8,11 @@
     'author': "Alliantum",
     'website': "https://www.alliantum.com",
     'license': 'AGPL-3',
-    'version': '13.0.1.0.0',
+    'version': '14.0.1.0.0',
     'category': 'Technical',
-    'depends': ['base_setup'],
+    'depends': [
+        'base_setup'
+    ],
     'data': [
         'security/ir.model.access.csv',
         'wizards/manage_mail_attachments.xml',

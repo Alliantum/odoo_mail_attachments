@@ -51,7 +51,7 @@
                             <field name="attachment_line_id" invisible="True" />
                             <field name="attachment_id" />
                             <field name="ref_field" />
-                            <field name="lang_id" />
+                            <field name="lang" />
                         </tree>
                     </field>
                 </sheet>
