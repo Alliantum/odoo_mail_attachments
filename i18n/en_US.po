@@ -1,33 +1,41 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* odoo_mail_attachments
+# 	* odoo_mail_attachments
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-14 13:23+0000\n"
-"PO-Revision-Date: 2021-04-14 13:23+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2022-03-31 15:13+0000\n"
+"PO-Revision-Date: 2022-03-31 16:19+0100\n"
+"Last-Translator: \n"
 "Language-Team: \n"
+"Language: en_US\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: odoo_mail_attachments
 #: model_terms:ir.ui.view,arch_db:odoo_mail_attachments.res_config_settings_view_form
-msgid "<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-specific.\" aria-label=\"Values set here are company-specific.\" groups=\"base.group_multi_company\" role=\"img\"/>"
+msgid ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
+"specific.\" aria-label=\"Values set here are company-specific.\" groups="
+"\"base.group_multi_company\" role=\"img\"/>"
 msgstr ""
 
 #. module: odoo_mail_attachments
 #: model_terms:ir.ui.view,arch_db:odoo_mail_attachments.manage_mail_attachemnt_view_form
-msgid "Add or remove here the attachemnt you want to have included in your mails."
+msgid ""
+"Add or remove here the attachemnt you want to have included in your mails."
 msgstr ""
 
 #. module: odoo_mail_attachments
 #: model_terms:ir.ui.view,arch_db:odoo_mail_attachments.mail_attachment_line_view_form
-msgid "And this is for the report model. You can also <b>keep empty for apply in all ciscunstances</b>."
+msgid ""
+"And this is for the report model. You can also <b>keep empty for apply in "
+"all ciscunstances</b>."
 msgstr ""
 
 #. module: odoo_mail_attachments
@@ -67,11 +75,6 @@ msgid "Company"
 msgstr ""
 
 #. module: odoo_mail_attachments
-#: model:ir.model,name:odoo_mail_attachments.model_res_config_settings
-msgid "Config Settings"
-msgstr ""
-
-#. module: odoo_mail_attachments
 #: model:ir.model.fields,field_description:odoo_mail_attachments.field_attachment_language_line__create_uid
 #: model:ir.model.fields,field_description:odoo_mail_attachments.field_mail_attachment_line__create_uid
 #: model:ir.model.fields,field_description:odoo_mail_attachments.field_manage_mail_attachments__create_uid
@@ -88,7 +91,9 @@ msgstr ""
 #. module: odoo_mail_attachments
 #: model:ir.model.fields,field_description:odoo_mail_attachments.field_attachment_language_line__display_name
 #: model:ir.model.fields,field_description:odoo_mail_attachments.field_mail_attachment_line__display_name
+#: model:ir.model.fields,field_description:odoo_mail_attachments.field_mail_compose_message__display_name
 #: model:ir.model.fields,field_description:odoo_mail_attachments.field_manage_mail_attachments__display_name
+#: model:ir.model.fields,field_description:odoo_mail_attachments.field_res_company__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -131,7 +136,9 @@ msgstr ""
 #. module: odoo_mail_attachments
 #: model:ir.model.fields,field_description:odoo_mail_attachments.field_attachment_language_line__id
 #: model:ir.model.fields,field_description:odoo_mail_attachments.field_mail_attachment_line__id
+#: model:ir.model.fields,field_description:odoo_mail_attachments.field_mail_compose_message__id
 #: model:ir.model.fields,field_description:odoo_mail_attachments.field_manage_mail_attachments__id
+#: model:ir.model.fields,field_description:odoo_mail_attachments.field_res_company__id
 msgid "ID"
 msgstr ""
 
@@ -143,7 +150,9 @@ msgstr ""
 #. module: odoo_mail_attachments
 #: model:ir.model.fields,field_description:odoo_mail_attachments.field_attachment_language_line____last_update
 #: model:ir.model.fields,field_description:odoo_mail_attachments.field_mail_attachment_line____last_update
+#: model:ir.model.fields,field_description:odoo_mail_attachments.field_mail_compose_message____last_update
 #: model:ir.model.fields,field_description:odoo_mail_attachments.field_manage_mail_attachments____last_update
+#: model:ir.model.fields,field_description:odoo_mail_attachments.field_res_company____last_update
 msgid "Last Modified on"
 msgstr ""
 
@@ -164,12 +173,12 @@ msgstr ""
 #. module: odoo_mail_attachments
 #: model:ir.model,name:odoo_mail_attachments.model_mail_attachment_line
 msgid "Mail Attachemnt Line"
-msgstr ""
+msgstr "Mail Attachment Line"
 
 #. module: odoo_mail_attachments
 #: model_terms:ir.ui.view,arch_db:odoo_mail_attachments.res_config_settings_view_form
 msgid "Manage Attachment Rules"
-msgstr ""
+msgstr "Manage Attachment Rules"
 
 #. module: odoo_mail_attachments
 #: model:ir.actions.act_window,name:odoo_mail_attachments.action_manage_mail_attachent
@@ -179,11 +188,6 @@ msgstr ""
 #. module: odoo_mail_attachments
 #: model_terms:ir.ui.view,arch_db:odoo_mail_attachments.manage_mail_attachemnt_view_form
 msgid "Manage Dynamic Mail Attachments"
-msgstr ""
-
-#. module: odoo_mail_attachments
-#: model:ir.model,name:odoo_mail_attachments.model_manage_mail_attachemnts
-msgid "Manage Mail Attachemnts"
 msgstr ""
 
 #. module: odoo_mail_attachments
@@ -199,7 +203,9 @@ msgstr ""
 
 #. module: odoo_mail_attachments
 #: model:ir.model.fields,help:odoo_mail_attachments.field_mail_attachment_line__model_id
-msgid "Model used by the email template. This will decide whether to use or not then current attachemnt line."
+msgid ""
+"Model used by the email template. This will decide whether to use or not "
+"then current attachemnt line."
 msgstr ""
 
 #. module: odoo_mail_attachments
@@ -251,11 +257,13 @@ msgstr ""
 #. module: odoo_mail_attachments
 #: model:ir.model.fields,help:odoo_mail_attachments.field_mail_attachment_line__report_id
 msgid "The report that will be used to generate the attachemnt."
-msgstr ""
+msgstr "The report that will be used to generate the attachment."
 
 #. module: odoo_mail_attachments
 #: model_terms:ir.ui.view,arch_db:odoo_mail_attachments.mail_attachment_line_view_form
-msgid "This filter will apply to the trigger model. <b>Keep empty to attach pdf in all cases</b>."
+msgid ""
+"This filter will apply to the trigger model. <b>Keep empty to attach pdf in "
+"all cases</b>."
 msgstr ""
 
 #. module: odoo_mail_attachments
@@ -285,13 +293,17 @@ msgstr ""
 
 #. module: odoo_mail_attachments
 #: model:ir.model.fields,help:odoo_mail_attachments.field_mail_attachment_line__related_path
-msgid "Using dot notation, you can specify here the path (starting from Model) to the records that will be used by the Report.\n"
+msgid ""
+"Using dot notation, you can specify here the path (starting from Model) to "
+"the records that will be used by the Report.\n"
 " For example:\n"
 "\n"
-" - Your rule applies to Sale Order, then if you want to attach the Delivery Slip to a Sale Order, you simply have to enter:\n"
+" - Your rule applies to Sale Order, then if you want to attach the Delivery "
+"Slip to a Sale Order, you simply have to enter:\n"
 "    'picking_ids'\n"
 "\n"
-" - But, if your rule applies to Invoices too, you will need maybe something like:\n"
+" - But, if your rule applies to Invoices too, you will need maybe something "
+"like:\n"
 "    'invoice_line_ids.sale_line_ids.order_id.picking_ids'"
 msgstr ""
 
@@ -307,6 +319,9 @@ msgstr ""
 
 #. module: odoo_mail_attachments
 #: model_terms:ir.ui.view,arch_db:odoo_mail_attachments.mail_attachment_line_view_form
-msgid "When using this option, the language will be inferred from the <b>Trigger Model</b> when it contains the given <b>Reference Field</b> (most commonly will probably be <code>res_partner</code>) pointing to a <code>res.partner</code> related field."
+msgid ""
+"When using this option, the language will be inferred from the <b>Trigger "
+"Model</b> when it contains the given <b>Reference Field</b> (most commonly "
+"will probably be <code>res_partner</code>) pointing to a <code>res.partner</"
+"code> related field."
 msgstr ""
-
