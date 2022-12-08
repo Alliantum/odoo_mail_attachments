@@ -102,5 +102,8 @@ class MailAttachmentLine(models.Model):
                             base64_pdf = base64.b64encode(pdf[0])
                             attachment_ids += composer_id.get_dynamic_attachments(line.report_id, base64_pdf, report_record_ids)
         if attachment_ids:
-            value['value']['attachment_ids'] += [(4, attachment_id.id, False) for attachment_id in attachment_ids]
+            if not value['value'].get('attachment_ids'):
+                value['value']['attachment_ids'] = [(4, attachment_id.id, False) for attachment_id in attachment_ids]
+            else:
+                value['value']['attachment_ids'] += [(4, attachment_id.id, False) for attachment_id in attachment_ids]
         return value
